@@ -1,0 +1,43 @@
+edition: 3.0.0
+name: vue-ant-design-app
+access: default
+
+services:
+  web-app:
+    component: fc
+    props:
+      region: cn-hangzhou
+      service:
+        name: vue-ant-website
+        description: Vue Ant Design Website
+        internetAccess: true
+      function:
+        name: web-serve
+        handler: index.handler
+        runtime: custom
+        initializer: index.initializer
+        memorySize: 512
+        timeout: 60
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
+              serviceName: vue-ant-website
+              functionName: web-serve
+      customRuntimeConfig:
+        command:
+          - node
+          - server.js 

@@ -34,11 +34,6 @@ watchEffect(() => {
   }
 });
 
-// 监听语言变化，更新HTML的lang属性
-watchEffect(() => {
-  document.documentElement.lang = locale.value;
-});
-
 const languages = [
   { key: 'zh-CN', label: '中文' },
   { key: 'en-US', label: 'English' },

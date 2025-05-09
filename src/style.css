@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,28 +11,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* 中文环境字体设置 */
-html[lang="zh-CN"] {
-  font-family: 'Noto Sans SC', 'Poppins', system-ui, sans-serif;
-}
-
-/* 日文环境字体设置 */
-html[lang="ja-JP"] {
-  font-family: 'Noto Sans JP', 'Poppins', system-ui, sans-serif;
-}
-
-/* 英文环境字体设置 */
-html[lang="en-US"] {
-  font-family: 'Poppins', system-ui, sans-serif;
-}
-
-/* 其他语言环境默认使用Poppins */
-html[lang="fr-FR"],
-html[lang="es-ES"],
-html[lang="de-DE"] {
-  font-family: 'Poppins', system-ui, sans-serif;
 }
 
 a {

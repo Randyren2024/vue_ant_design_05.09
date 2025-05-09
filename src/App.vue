@@ -157,6 +157,10 @@ const toggleCollapsed = () => {
 <style scoped>
 .layout {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
@@ -297,5 +301,12 @@ const toggleCollapsed = () => {
     flex-direction: column;
     gap: 24px;
   }
+}
+
+:deep(.ant-layout-content) {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
 }
 </style>

@@ -99,76 +99,82 @@ const scenarios = [
 
     <!-- 产品展示 -->
     <div class="section">
-      <a-typography-title level="2" class="section-title">
-        {{ t('home.products.title') }}
-      </a-typography-title>
-      <a-divider></a-divider>
-      
-      <a-row :gutter="[24, 24]">
-        <a-col :xs="24" :sm="12" :md="6" v-for="product in products" :key="product.id">
-          <a-card hoverable @click="router.push(`/products/${product.id}`)">
-            <template #cover>
-              <img :alt="product.name" :src="product.image" />
-            </template>
-            <a-card-meta :title="product.name">
-              <template #description>{{ product.description }}</template>
-            </a-card-meta>
-          </a-card>
-        </a-col>
-      </a-row>
-      
-      <div class="text-center mt-4">
-        <a-button type="primary" @click="router.push('/products')">
-          {{ t('home.products.viewAll') }}
-        </a-button>
+      <div class="section-content">
+        <a-typography-title level="2" class="section-title">
+          {{ t('home.products.title') }}
+        </a-typography-title>
+        <a-divider></a-divider>
+        
+        <a-row :gutter="[24, 24]">
+          <a-col :xs="24" :sm="12" :md="6" v-for="product in products" :key="product.id">
+            <a-card hoverable @click="router.push(`/products/${product.id}`)">
+              <template #cover>
+                <img :alt="product.name" :src="product.image" />
+              </template>
+              <a-card-meta :title="product.name">
+                <template #description>{{ product.description }}</template>
+              </a-card-meta>
+            </a-card>
+          </a-col>
+        </a-row>
+        
+        <div class="text-center mt-4">
+          <a-button type="primary" @click="router.push('/products')">
+            {{ t('home.products.viewAll') }}
+          </a-button>
+        </div>
       </div>
     </div>
 
     <!-- 应用场景 -->
     <div class="section">
-      <a-typography-title level="2" class="section-title">
-        {{ t('home.scenarios.title') }}
-      </a-typography-title>
-      <a-divider></a-divider>
-      
-      <a-row :gutter="[24, 24]">
-        <a-col :xs="24" :sm="12" :md="6" v-for="scenario in scenarios" :key="scenario.id">
-          <a-card hoverable @click="router.push(`/scenarios/${scenario.id}`)">
-            <template #cover>
-              <img :alt="scenario.name" :src="scenario.image" />
-            </template>
-            <a-card-meta :title="scenario.name">
-              <template #description>{{ scenario.description }}</template>
-            </a-card-meta>
-          </a-card>
-        </a-col>
-      </a-row>
-      
-      <div class="text-center mt-4">
-        <a-button type="primary" @click="router.push('/scenarios')">
-          {{ t('home.scenarios.viewAll') }}
-        </a-button>
+      <div class="section-content">
+        <a-typography-title level="2" class="section-title">
+          {{ t('home.scenarios.title') }}
+        </a-typography-title>
+        <a-divider></a-divider>
+        
+        <a-row :gutter="[24, 24]">
+          <a-col :xs="24" :sm="12" :md="6" v-for="scenario in scenarios" :key="scenario.id">
+            <a-card hoverable @click="router.push(`/scenarios/${scenario.id}`)">
+              <template #cover>
+                <img :alt="scenario.name" :src="scenario.image" />
+              </template>
+              <a-card-meta :title="scenario.name">
+                <template #description>{{ scenario.description }}</template>
+              </a-card-meta>
+            </a-card>
+          </a-col>
+        </a-row>
+        
+        <div class="text-center mt-4">
+          <a-button type="primary" @click="router.push('/scenarios')">
+            {{ t('home.scenarios.viewAll') }}
+          </a-button>
+        </div>
       </div>
     </div>
 
     <!-- 下载资料 -->
     <div class="section download-section">
-      <a-row type="flex" align="middle" justify="center">
-        <a-col :span="16">
-          <a-typography-title level="2">
-            {{ t('home.download.title') }}
-          </a-typography-title>
-          <a-typography-paragraph>
-            {{ t('home.download.description') }}
-          </a-typography-paragraph>
-          <a-button type="primary" size="large" @click="window.open('/files/HiTS Drone Series Catalog.pdf', '_blank')">
-            {{ t('home.download.catalog') }}
-          </a-button>
-          <a-button size="large" class="ml-3" @click="router.push('/contact')">
-            {{ t('home.download.contact') }}
-          </a-button>
-        </a-col>
-      </a-row>
+      <div class="section-content">
+        <a-row type="flex" align="middle" justify="center">
+          <a-col :span="16">
+            <a-typography-title level="2">
+              {{ t('home.download.title') }}
+            </a-typography-title>
+            <a-typography-paragraph>
+              {{ t('home.download.description') }}
+            </a-typography-paragraph>
+            <a-button type="primary" size="large" @click="window.open('/files/HiTS Drone Series Catalog.pdf', '_blank')">
+              {{ t('home.download.catalog') }}
+            </a-button>
+            <a-button size="large" class="ml-3" @click="router.push('/contact')">
+              {{ t('home.download.contact') }}
+            </a-button>
+          </a-col>
+        </a-row>
+      </div>
     </div>
   </div>
 </template>
@@ -176,6 +182,8 @@ const scenarios = [
 <style scoped>
 .home {
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* 防止水平滚动 */
 }
 
 .banner {
@@ -216,7 +224,15 @@ const scenarios = [
 }
 
 .section {
-  padding: 60px 5%;
+  padding: 60px 0; /* 修改左右内边距为0 */
+  width: 100%; /* 确保宽度100% */
+  max-width: 100%; /* 最大宽度也是100% */
+}
+
+.section-content {
+  padding: 0 5%; /* 在内容容器中添加左右内边距 */
+  max-width: 1400px; /* 设置最大宽度 */
+  margin: 0 auto; /* 居中显示 */
 }
 
 .section-title {
@@ -259,7 +275,7 @@ const scenarios = [
   }
   
   .section {
-    padding: 40px 5%;
+    padding: 40px 0; /* 移动端也修改左右内边距为0 */
   }
 }
 </style> 

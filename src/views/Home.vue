@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Carousel, Card, Button, Row, Col, Typography, Divider } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
@@ -7,8 +7,8 @@ import { useRouter } from 'vue-router';
 const { t } = useI18n();
 const router = useRouter();
 
-// 轮播图数据
-const bannerImages = [
+// 使用computed属性动态计算轮播图数据
+const bannerImages = computed(() => [
   { 
     src: '/images/products/qingtian-h100-1.jpg', 
     title: t('home.banner.title1'), 
@@ -19,10 +19,10 @@ const bannerImages = [
     title: t('home.banner.title2'), 
     subtitle: t('home.banner.subtitle2') 
   }
-];
+]);
 
-// 产品数据
-const products = [
+// 使用computed属性动态计算产品数据
+const products = computed(() => [
   {
     id: 'qingtian-h100',
     name: t('products.items.qingtianH100.name'),
@@ -47,10 +47,10 @@ const products = [
     image: '/images/products/hydrogen-bike-1.jpg',
     description: t('products.items.hydrogenBike.description'),
   }
-];
+]);
 
-// 应用场景数据
-const scenarios = [
+// 使用computed属性动态计算应用场景数据
+const scenarios = computed(() => [
   {
     id: 'inspection',
     name: t('scenarios.items.inspection.name'),
@@ -75,7 +75,7 @@ const scenarios = [
     image: '/images/scenarios/logistics.jpg',
     description: t('scenarios.items.logistics.description'),
   }
-];
+]);
 </script>
 
 <template>

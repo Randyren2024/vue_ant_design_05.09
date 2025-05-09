@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Row, Col, Typography, Divider, Card, Tabs } from 'ant-design-vue';
 
 const { t } = useI18n();
 const activeKey = ref('company');
 
-// 发展历程数据
-const historyData = [
-  { year: '2018', event: '公司成立，专注氢燃料电池技术研发' },
-  { year: '2019', event: '发布首款氢燃料电池系统HiTS-100' },
-  { year: '2020', event: '与多家高校建立产学研合作，池州生产基地投产' },
-  { year: '2021', event: '发布擎天H100无人机，填补国内氢动力重载无人机空白' },
-  { year: '2022', event: '枣庄生产基地投产，产能提升300%' },
-  { year: '2023', event: '青鸾H25无人机量产并出口，成为行业标杆' },
-  { year: '2024', event: '麒麟HiTS系列完成全系列产品布局，覆盖200W-12000W功率段' }
-];
+// 发展历程数据 - 使用computed动态获取翻译
+const historyData = computed(() => [
+  { year: '2018', event: t('about.history_data.2018') },
+  { year: '2019', event: t('about.history_data.2019') },
+  { year: '2020', event: t('about.history_data.2020') },
+  { year: '2021', event: t('about.history_data.2021') },
+  { year: '2022', event: t('about.history_data.2022') },
+  { year: '2023', event: t('about.history_data.2023') },
+  { year: '2024', event: t('about.history_data.2024') }
+]);
 
-// 工厂图片
-const factoryImages = [
-  { src: '/images/factory/factory-1.jpg', title: '池州生产基地' },
-  { src: '/images/assembly/assembly-1.jpg', title: '无人机组装车间' }
-];
+// 工厂图片 - 使用computed动态获取翻译
+const factoryImages = computed(() => [
+  { src: '/images/factory/factory-1.jpg', title: t('about.factory_images.factory1') },
+  { src: '/images/assembly/assembly-1.jpg', title: t('about.factory_images.assembly1') }
+]);
 
-// 合作伙伴
-const partners = [
-  { name: '中国科学院', logo: '/images/partners/cas.png' },
-  { name: '清华大学', logo: '/images/partners/tsinghua.png' },
-  { name: '中国石化', logo: '/images/partners/sinopec.png' },
-  { name: '国家电网', logo: '/images/partners/sgcc.png' }
-];
+// 合作伙伴 - 使用computed动态获取翻译
+const partners = computed(() => [
+  { name: t('about.partners_data.cas'), logo: '/images/partners/cas.png' },
+  { name: t('about.partners_data.tsinghua'), logo: '/images/partners/tsinghua.png' },
+  { name: t('about.partners_data.sinopec'), logo: '/images/partners/sinopec.png' },
+  { name: t('about.partners_data.sgcc'), logo: '/images/partners/sgcc.png' }
+]);
 </script>
 
 <template>
@@ -45,19 +45,19 @@ const partners = [
           <div class="company-profile">
             <a-row :gutter="[24, 24]">
               <a-col :xs="24" :md="12">
-                <a-typography-title level="2">协氢科技</a-typography-title>
+                <a-typography-title level="2">{{ t('common.companyName') }}</a-typography-title>
                 <a-typography-paragraph>
-                  协氢科技成立于2018年，是一家专注于氢燃料电池及应用系统研发、生产和销售的高新技术企业。公司拥有先进的氢燃料电池技术，产品涵盖氢燃料电池系统、无人机、电动车等多个领域。
+                  {{ t('about.company_intro.p1') }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
-                  公司总部位于北京，拥有池州和枣庄两大生产基地，年产能达到1000套燃料电池系统和500架无人机。我们的产品已广泛应用于电力巡检、应急救援、物流运输等领域，并出口至欧洲、中东等地区。
+                  {{ t('about.company_intro.p2') }}
                 </a-typography-paragraph>
                 <a-typography-paragraph>
-                  协氢科技致力于推动氢能产业发展，为绿色低碳社会贡献力量。
+                  {{ t('about.company_intro.p3') }}
                 </a-typography-paragraph>
               </a-col>
               <a-col :xs="24" :md="12">
-                <img src="/images/factory/factory-1.jpg" alt="公司全景" class="company-image" />
+                <img src="/images/factory/factory-1.jpg" :alt="t('about.company_image_alt')" class="company-image" />
               </a-col>
             </a-row>
           </div>
@@ -90,7 +90,7 @@ const partners = [
         </a-tab-pane>
         
         <a-tab-pane key="partners" :tab="t('about.partners')">
-          <a-typography-title level="3" class="partners-title">战略合作伙伴</a-typography-title>
+          <a-typography-title level="3" class="partners-title">{{ t('about.strategic_partners') }}</a-typography-title>
           <a-row :gutter="[24, 24]" class="partners-list">
             <a-col :xs="12" :sm="6" v-for="(partner, index) in partners" :key="index">
               <div class="partner-item">

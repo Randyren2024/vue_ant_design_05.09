@@ -129,6 +129,6 @@ export default {
     prev: 'Anterior',
     next: 'Siguiente',
     rights: 'Todos los Derechos Reservados',
-    companyName: 'HydroTech'
+    companyName: 'HydrogenDrone'
   }
 }; 

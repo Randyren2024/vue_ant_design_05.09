@@ -129,6 +129,6 @@ export default {
     prev: '上一个',
     next: '下一个',
     rights: '版权所有',
-    companyName: '协氢科技'
+    companyName: 'HydrogenDrone'
   }
 }; 

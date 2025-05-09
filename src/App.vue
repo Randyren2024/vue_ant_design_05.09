@@ -54,7 +54,7 @@ const toggleCollapsed = () => {
   <a-layout class="layout">
     <a-layout-header class="header">
       <div class="logo" @click="router.push('/')">
-        <img src="/logo.svg" alt="协氢科技" height="40" />
+        <img src="/logo.svg" alt="HydrogenDrone" height="40" />
       </div>
       
       <!-- 桌面端菜单 -->
@@ -120,7 +120,7 @@ const toggleCollapsed = () => {
     <a-layout-footer class="footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="/logo.svg" alt="协氢科技" height="30" />
+          <img src="/logo.svg" alt="HydrogenDrone" height="30" />
           <p>© {{ new Date().getFullYear() }} {{ t('common.companyName') }}. {{ t('common.rights') }}</p>
         </div>
         <div class="footer-links">

@@ -129,6 +129,6 @@ export default {
     prev: '前へ',
     next: '次へ',
     rights: '全著作権所有',
-    companyName: 'ハイドロテック'
+    companyName: 'HydrogenDrone'
   }
 };

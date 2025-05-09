@@ -26,7 +26,8 @@ export default {
     download: {
       title: '产品资料',
       catalog: '下载产品目录',
-      contact: '联系我们'
+      contact: '联系我们',
+      description: '下载我们的产品目录，了解更多氢燃料电池无人机及配套产品信息。'
     }
   },
   products: {
@@ -42,6 +43,24 @@ export default {
       features: '产品特点',
       scenarios: '适用场景',
       download: '资料下载'
+    },
+    items: {
+      qingtianH100: {
+        name: '擎天H100',
+        description: '重载氢燃料电池多旋翼无人机'
+      },
+      qingluanH25: {
+        name: '青鸾H25',
+        description: '轻型氢燃料电池多旋翼无人机'
+      },
+      hitsSeries: {
+        name: '麒麟HiTS系列',
+        description: '氢燃料电池系统'
+      },
+      hydrogenBike: {
+        name: '氢电共享两轮车',
+        description: '环保高效的城市共享交通工具'
+      }
     }
   },
   scenarios: {
@@ -53,6 +72,24 @@ export default {
       logistics: '物流运输',
       cleaning: '清洁服务',
       agriculture: '农业应用'
+    },
+    items: {
+      inspection: {
+        name: '巡检应用',
+        description: '光伏板巡检、电力巡检'
+      },
+      cleaning: {
+        name: '清洁服务',
+        description: '光伏板清洗、玻璃幕墙清洗'
+      },
+      emergency: {
+        name: '应急救援',
+        description: '消防、医疗救援'
+      },
+      logistics: {
+        name: '物流运输',
+        description: '货物运输、应急物资投送'
+      }
     }
   },
   about: {
@@ -91,6 +128,7 @@ export default {
     more: '更多',
     prev: '上一个',
     next: '下一个',
-    rights: '版权所有'
+    rights: '版权所有',
+    companyName: '协氢科技'
   }
 }; 

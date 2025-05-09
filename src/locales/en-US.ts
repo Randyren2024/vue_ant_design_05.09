@@ -26,7 +26,8 @@ export default {
     download: {
       title: 'Product Information',
       catalog: 'Download Catalog',
-      contact: 'Contact Us'
+      contact: 'Contact Us',
+      description: 'Download our product catalog to learn more about our hydrogen fuel cell drones and related products.'
     }
   },
   products: {
@@ -42,6 +43,24 @@ export default {
       features: 'Features',
       scenarios: 'Applications',
       download: 'Downloads'
+    },
+    items: {
+      qingtianH100: {
+        name: 'HydroSky H100',
+        description: 'Heavy-duty Hydrogen Fuel Cell Multirotor Drone'
+      },
+      qingluanH25: {
+        name: 'HydroPhoenix H25',
+        description: 'Lightweight Hydrogen Fuel Cell Multirotor Drone'
+      },
+      hitsSeries: {
+        name: 'HydroKirin HiTS Series',
+        description: 'Hydrogen Fuel Cell System'
+      },
+      hydrogenBike: {
+        name: 'Hydrogen Electric Shared Bike',
+        description: 'Eco-friendly Urban Shared Transportation'
+      }
     }
   },
   scenarios: {
@@ -53,6 +72,24 @@ export default {
       logistics: 'Logistics',
       cleaning: 'Cleaning Services',
       agriculture: 'Agriculture'
+    },
+    items: {
+      inspection: {
+        name: 'Inspection',
+        description: 'Solar Panel Inspection, Power Line Inspection'
+      },
+      cleaning: {
+        name: 'Cleaning Services',
+        description: 'Solar Panel Cleaning, Glass Curtain Wall Cleaning'
+      },
+      emergency: {
+        name: 'Emergency Response',
+        description: 'Fire Fighting, Medical Rescue'
+      },
+      logistics: {
+        name: 'Logistics',
+        description: 'Cargo Transport, Emergency Material Delivery'
+      }
     }
   },
   about: {
@@ -91,6 +128,7 @@ export default {
     more: 'More',
     prev: 'Previous',
     next: 'Next',
-    rights: 'All Rights Reserved'
+    rights: 'All Rights Reserved',
+    companyName: 'HydroTech'
   }
 }; 

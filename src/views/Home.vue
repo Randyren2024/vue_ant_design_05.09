@@ -25,27 +25,27 @@ const bannerImages = [
 const products = [
   {
     id: 'qingtian-h100',
-    name: '擎天H100',
+    name: t('products.items.qingtianH100.name'),
     image: '/images/products/qingtian-h100-1.jpg',
-    description: '重载氢燃料电池多旋翼无人机',
+    description: t('products.items.qingtianH100.description'),
   },
   {
     id: 'qingluan-h25',
-    name: '青鸾H25',
+    name: t('products.items.qingluanH25.name'),
     image: '/images/products/qingluanH25-1.jpg',
-    description: '轻型氢燃料电池多旋翼无人机',
+    description: t('products.items.qingluanH25.description'),
   },
   {
     id: 'hits-series',
-    name: '麒麟HiTS系列',
+    name: t('products.items.hitsSeries.name'),
     image: '/images/products/hits-series.jpg',
-    description: '氢燃料电池系统',
+    description: t('products.items.hitsSeries.description'),
   },
   {
     id: 'hydrogen-bike',
-    name: '氢电共享两轮车',
+    name: t('products.items.hydrogenBike.name'),
     image: '/images/products/hydrogen-bike-1.jpg',
-    description: '环保高效的城市共享交通工具',
+    description: t('products.items.hydrogenBike.description'),
   }
 ];
 
@@ -53,27 +53,27 @@ const products = [
 const scenarios = [
   {
     id: 'inspection',
-    name: '巡检应用',
+    name: t('scenarios.items.inspection.name'),
     image: '/images/scenarios/inspection.jpg',
-    description: '光伏板巡检、电力巡检',
+    description: t('scenarios.items.inspection.description'),
   },
   {
     id: 'cleaning',
-    name: '清洁服务',
+    name: t('scenarios.items.cleaning.name'),
     image: '/images/scenarios/cleaning.jpg',
-    description: '光伏板清洗、玻璃幕墙清洗',
+    description: t('scenarios.items.cleaning.description'),
   },
   {
     id: 'emergency',
-    name: '应急救援',
+    name: t('scenarios.items.emergency.name'),
     image: '/images/scenarios/emergency.jpg',
-    description: '消防、医疗救援',
+    description: t('scenarios.items.emergency.description'),
   },
   {
     id: 'logistics',
-    name: '物流运输',
+    name: t('scenarios.items.logistics.name'),
     image: '/images/scenarios/logistics.jpg',
-    description: '货物运输、应急物资投送',
+    description: t('scenarios.items.logistics.description'),
   }
 ];
 </script>
@@ -159,7 +159,7 @@ const scenarios = [
             {{ t('home.download.title') }}
           </a-typography-title>
           <a-typography-paragraph>
-            {{ t('home.download.description', '下载我们的产品目录，了解更多氢燃料电池无人机及配套产品信息。') }}
+            {{ t('home.download.description') }}
           </a-typography-paragraph>
           <a-button type="primary" size="large" @click="window.open('/files/HiTS Drone Series Catalog.pdf', '_blank')">
             {{ t('home.download.catalog') }}

@@ -2,25 +2,25 @@ edition: 3.0.0
 name: vue-ant-design-app
 access: default
 
-services:
+resources:
   web-app:
-    component: fc
+    component: fc3
     props:
-      region: cn-hangzhou
-      service:
-        name: vue-ant-website
-        description: Vue Ant Design Website
-        internetAccess: true
-      function:
-        name: web-serve
-        handler: index.handler
-        runtime: custom
-        initializer: index.initializer
-        memorySize: 512
-        timeout: 60
+      region: cn-hongkong
+      functionName: web-serve
+      description: Vue Ant Design Website
+      runtime: custom.debian10
+      memorySize: 512
+      timeout: 60
+      code: ./dist
+      customRuntimeConfig:
+        command:
+          - node
+          - server.js
       triggers:
         - name: httpTrigger
           type: http
+          qualifier: LATEST
           config:
             authType: anonymous
             methods:
@@ -35,9 +35,10 @@ services:
           protocol: HTTP
           routeConfigs:
             - path: /*
-              serviceName: vue-ant-website
-              functionName: web-serve
-      customRuntimeConfig:
-        command:
-          - node
-          - server.js 
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - HEAD
+                - OPTIONS 

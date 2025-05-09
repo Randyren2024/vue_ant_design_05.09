@@ -26,7 +26,8 @@ export default {
     download: {
       title: '製品資料',
       catalog: 'カタログをダウンロード',
-      contact: 'お問い合わせ'
+      contact: 'お問い合わせ',
+      description: '製品カタログをダウンロードして、水素燃料電池ドローンと関連製品についての詳細をご覧ください。'
     }
   },
   products: {
@@ -42,9 +43,28 @@ export default {
       features: '特徴',
       scenarios: '適用シーン',
       download: 'ダウンロード'
+    },
+    items: {
+      qingtianH100: {
+        name: 'ハイドロスカイ H100',
+        description: '重装備水素燃料電池マルチローターUAV'
+      },
+      qingluanH25: {
+        name: 'ハイドロフェニックス H25',
+        description: '軽量水素燃料電池マルチローターUAV'
+      },
+      hitsSeries: {
+        name: 'ハイドロ麒麟 HiTSシリーズ',
+        description: '水素燃料電池システム'
+      },
+      hydrogenBike: {
+        name: '水素電動シェアバイク',
+        description: '環境に優しい都市交通手段'
+      }
     }
   },
   scenarios: {
+    title: 'アプリケーション',
     filter: {
       all: '全て',
       inspection: '点検',
@@ -53,7 +73,24 @@ export default {
       cleaning: '清掃サービス',
       agriculture: '農業'
     },
-    title: 'アプリケーション'
+    items: {
+      inspection: {
+        name: '点検',
+        description: 'ソーラーパネル点検、電力線点検'
+      },
+      cleaning: {
+        name: '清掃サービス',
+        description: 'ソーラーパネル清掃、ガラスカーテンウォール清掃'
+      },
+      emergency: {
+        name: '緊急救助',
+        description: '消防活動、医療救助'
+      },
+      logistics: {
+        name: '物流',
+        description: '貨物輸送、緊急物資配送'
+      }
+    }
   },
   about: {
     title: '会社概要',
@@ -91,6 +128,7 @@ export default {
     more: 'もっと見る',
     prev: '前へ',
     next: '次へ',
-    rights: '全著作権所有'
+    rights: '全著作権所有',
+    companyName: 'ハイドロテック'
   }
 };

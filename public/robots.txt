@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# 网站地图
+Sitemap: https://www.example.com/sitemap.xml
+
+# 主要允许爬取的目录
+Allow: /products/
+Allow: /scenarios/
+Allow: /about/
+Allow: /news/
+Allow: /contact/
+Allow: /images/
+Allow: /files/
+
+# 不允许爬取的资源
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.js$
+Disallow: /*.css$ 

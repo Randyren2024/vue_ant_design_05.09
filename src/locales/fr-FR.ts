@@ -9,59 +9,96 @@ export default {
   },
   home: {
     banner: {
-      title1: 'L\'avenir du vol à hydrogène',
-      subtitle1: 'Écologique et efficace',
-      title2: 'Drones innovants à pile à combustible',
-      subtitle2: 'À la pointe de la révolution des drones industriels',
-      learnMore: 'En savoir plus'
+      title1: "L'avenir du Vol à Hydrogène",
+      subtitle1: 'Écologique, Efficace et Durable',
+      title2: 'Drones Innovants à Pile à Combustible à Hydrogène',
+      subtitle2: 'À la Pointe de la Révolution des Drones Industriels',
+      learnMore: 'En Savoir Plus'
     },
     products: {
-      title: 'Gammes de produits',
-      viewAll: 'Voir tout'
+      title: 'Séries de Produits',
+      viewAll: 'Voir Tout'
     },
     scenarios: {
       title: 'Applications',
-      viewAll: 'Voir tout'
+      viewAll: 'Voir Tout'
     },
     download: {
-      title: 'Documentation',
-      catalog: 'Télécharger le catalogue',
-      contact: 'Nous contacter'
+      title: 'Information Produit',
+      catalog: 'Télécharger le Catalogue',
+      contact: 'Contactez-nous',
+      description: 'Téléchargez notre catalogue de produits pour en savoir plus sur nos drones à pile à combustible à hydrogène et produits associés.'
     }
   },
   products: {
     title: 'Produits',
     filter: {
-      all: 'Tous',
-      drone: 'Série de drones',
-      component: 'Série de composants',
-      vehicle: 'Série de véhicules'
+      all: 'Tout',
+      drone: 'Série de Drones',
+      component: 'Composants',
+      vehicle: 'Série de Véhicules'
     },
     detail: {
       specs: 'Spécifications',
       features: 'Caractéristiques',
       scenarios: 'Applications',
       download: 'Téléchargements'
+    },
+    items: {
+      qingtianH100: {
+        name: 'HydroSky H100',
+        description: 'Drone Multirotor à Pile à Combustible à Hydrogène pour Usage Intensif'
+      },
+      qingluanH25: {
+        name: 'HydroPhoenix H25',
+        description: 'Drone Multirotor Léger à Pile à Combustible à Hydrogène'
+      },
+      hitsSeries: {
+        name: 'Série HydroKirin HiTS',
+        description: 'Système de Pile à Combustible à Hydrogène'
+      },
+      hydrogenBike: {
+        name: 'Vélo Électrique Partagé à Hydrogène',
+        description: 'Transport Urbain Partagé Écologique'
+      }
     }
   },
   scenarios: {
+    title: 'Applications',
     filter: {
-      all: 'Tous',
+      all: 'Tout',
       inspection: 'Inspection',
-      emergency: 'Urgence',
+      emergency: "Intervention d'Urgence",
       logistics: 'Logistique',
-      cleaning: 'Service de nettoyage',
+      cleaning: 'Services de Nettoyage',
       agriculture: 'Agriculture'
     },
-    title: 'Applications'
+    items: {
+      inspection: {
+        name: 'Inspection',
+        description: 'Inspection de Panneaux Solaires, Inspection de Lignes Électriques'
+      },
+      cleaning: {
+        name: 'Services de Nettoyage',
+        description: 'Nettoyage de Panneaux Solaires, Nettoyage de Murs-rideaux en Verre'
+      },
+      emergency: {
+        name: "Intervention d'Urgence",
+        description: 'Lutte contre les Incendies, Secours Médical'
+      },
+      logistics: {
+        name: 'Logistique',
+        description: 'Transport de Marchandises, Livraison de Matériel d\'Urgence'
+      }
+    }
   },
   about: {
     title: 'À Propos',
-    company: 'Profil de l\'entreprise',
-    team: 'Notre équipe',
+    company: "Profil de l'Entreprise",
+    team: 'Notre Équipe',
     history: 'Histoire',
     partners: 'Partenaires',
-    factory: 'Sites de production'
+    factory: 'Installations de Production'
   },
   contact: {
     title: 'Contact',
@@ -72,25 +109,26 @@ export default {
     message: 'Message',
     submit: 'Envoyer',
     address: 'Adresse',
-    tel: 'Téléphone',
+    tel: 'Tél',
     followUs: 'Suivez-nous'
   },
   news: {
     title: 'Actualités',
-    readMore: 'Lire la suite',
+    readMore: 'Lire Plus',
     search: 'Rechercher',
     categories: 'Catégories',
-    recentPosts: 'Articles récents',
+    recentPosts: 'Articles Récents',
     tags: 'Tags'
   },
   common: {
-    learnMore: 'En savoir plus',
-    viewDetails: 'Voir détails',
+    learnMore: 'En Savoir Plus',
+    viewDetails: 'Voir les Détails',
     download: 'Télécharger',
     back: 'Retour',
     more: 'Plus',
     prev: 'Précédent',
     next: 'Suivant',
-    rights: 'Tous droits réservés'
+    rights: 'Tous Droits Réservés',
+    companyName: 'HydroTech'
   }
 }; 

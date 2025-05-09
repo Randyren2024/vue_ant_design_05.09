@@ -3,6 +3,7 @@ import { ref, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Layout, Menu, Button, Dropdown } from 'ant-design-vue';
 import { useRouter, useRoute } from 'vue-router';
+import SeoManager from './components/SeoManager.vue';
 
 const { t, locale } = useI18n();
 const router = useRouter();
@@ -48,6 +49,8 @@ const toggleCollapsed = () => {
 </script>
 
 <template>
+  <SeoManager />
+  
   <a-layout class="layout">
     <a-layout-header class="header">
       <div class="logo" @click="router.push('/')">
@@ -118,15 +121,15 @@ const toggleCollapsed = () => {
       <div class="footer-content">
         <div class="footer-logo">
           <img src="/logo.svg" alt="协氢科技" height="30" />
-          <p>© {{ new Date().getFullYear() }} {{ locale === 'zh-CN' ? '协氢科技' : 'HydroTech' }}. {{ t('common.rights') }}</p>
+          <p>© {{ new Date().getFullYear() }} {{ t('common.companyName') }}. {{ t('common.rights') }}</p>
         </div>
         <div class="footer-links">
           <div class="footer-section">
             <h3>{{ t('nav.products') }}</h3>
             <ul>
-              <li><a @click="router.push('/products/qingtian-h100')">{{ locale === 'zh-CN' ? '擎天H100' : 'HydroSky H100' }}</a></li>
-              <li><a @click="router.push('/products/qingluan-h25')">{{ locale === 'zh-CN' ? '青鸾H25' : 'HydroPhoenix H25' }}</a></li>
-              <li><a @click="router.push('/products/hits-series')">{{ locale === 'zh-CN' ? '麒麟HiTS系列' : 'HydroKirin HiTS Series' }}</a></li>
+              <li><a @click="router.push('/products/qingtian-h100')">{{ t('products.items.qingtianH100.name') }}</a></li>
+              <li><a @click="router.push('/products/qingluan-h25')">{{ t('products.items.qingluanH25.name') }}</a></li>
+              <li><a @click="router.push('/products/hits-series')">{{ t('products.items.hitsSeries.name') }}</a></li>
             </ul>
           </div>
           <div class="footer-section">

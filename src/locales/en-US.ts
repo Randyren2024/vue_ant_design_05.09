@@ -137,7 +137,8 @@ export default {
     submit: 'Submit',
     address: 'Address',
     tel: 'Tel',
-    followUs: 'Follow Us'
+    followUs: 'Follow Us',
+    successMessage: 'Thank you for your message. We will get back to you soon!'
   },
   news: {
     title: 'News',

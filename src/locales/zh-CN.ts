@@ -137,7 +137,8 @@ export default {
     submit: '提交',
     address: '地址',
     tel: '电话',
-    followUs: '关注我们'
+    followUs: '关注我们',
+    successMessage: '感谢您的留言，我们将尽快与您联系！'
   },
   news: {
     title: '新闻中心',

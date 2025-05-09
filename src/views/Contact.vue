@@ -11,6 +11,7 @@ import {
   WeiboOutlined,
   LinkedinOutlined
 } from '@ant-design/icons-vue';
+import NetlifyContactForm from '../components/NetlifyContactForm.vue';
 
 const { t } = useI18n();
 const formRef = ref();
@@ -75,47 +76,7 @@ const socialMedia = [
         <!-- 联系表单 -->
         <a-col :xs="24" :md="14">
           <a-typography-title level="2">留言咨询</a-typography-title>
-          <a-form
-            ref="formRef"
-            :model="formState"
-            :rules="rules"
-            layout="vertical"
-            @finish="onSubmit"
-          >
-            <a-row :gutter="16">
-              <a-col :xs="24" :sm="12">
-                <a-form-item name="name" :label="t('contact.name')">
-                  <a-input v-model:value="formState.name" />
-                </a-form-item>
-              </a-col>
-              <a-col :xs="24" :sm="12">
-                <a-form-item name="email" :label="t('contact.email')">
-                  <a-input v-model:value="formState.email" />
-                </a-form-item>
-              </a-col>
-            </a-row>
-            
-            <a-row :gutter="16">
-              <a-col :xs="24" :sm="12">
-                <a-form-item name="phone" :label="t('contact.phone')">
-                  <a-input v-model:value="formState.phone" />
-                </a-form-item>
-              </a-col>
-              <a-col :xs="24" :sm="12">
-                <a-form-item name="company" :label="t('contact.company')">
-                  <a-input v-model:value="formState.company" />
-                </a-form-item>
-              </a-col>
-            </a-row>
-            
-            <a-form-item name="message" :label="t('contact.message')">
-              <a-textarea v-model:value="formState.message" :rows="4" />
-            </a-form-item>
-            
-            <a-form-item>
-              <a-button type="primary" html-type="submit">{{ t('contact.submit') }}</a-button>
-            </a-form-item>
-          </a-form>
+          <NetlifyContactForm />
         </a-col>
         
         <!-- 联系信息 -->

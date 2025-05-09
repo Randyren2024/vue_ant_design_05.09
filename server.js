@@ -1,29 +1,25 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 9000;
 
 // 静态文件路径
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname)));
 
 // 所有路由指向index.html（SPA应用）
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // FC入口函数
-export const handler = (req, res, context) => {
+exports.handler = (req, res, context) => {
   app(req, res);
 };
 
 // FC初始化函数
-export const initializer = (context, callback) => {
+exports.initializer = (context, callback) => {
   console.log('Function initialized!');
   callback(null, '');
 };

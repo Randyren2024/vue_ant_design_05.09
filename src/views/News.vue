@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { List, Card, Tag, Input, Divider, Space, Typography } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
@@ -8,62 +8,77 @@ const { t } = useI18n();
 const router = useRouter();
 const searchValue = ref('');
 
-// 新闻数据
-const newsData = [
+// 使用computed属性动态获取翻译
+const newsData = computed(() => [
   {
     id: 'news-001',
-    title: '公司成功研发新型氢燃料电池系统，续航提升50%',
-    summary: '近日，协氢科技成功研发出新一代氢燃料电池系统，能量密度提高30%，续航时间提升50%，标志着国内氢能技术迈入新阶段。',
+    title: t('news.newsData.news-001.title'),
+    summary: t('news.newsData.news-001.summary'),
     date: '2024-03-15',
-    category: '技术突破',
-    tags: ['氢燃料电池', '续航提升', '技术创新'],
-    image: '/images/news/news-1.jpg'
+    category: t('news.newsData.news-001.category'),
+    tags: t('news.newsData.news-001.tags', undefined, { returnObjects: true }),
+    image: '/images/news/news-1.svg'
   },
   {
     id: 'news-002',
-    title: '擎天H100无人机成功应用于南极科考任务',
-    summary: '协氢科技的擎天H100氢能无人机近日成功应用于南极科考任务，在极寒环境下连续工作5小时，创下行业记录。',
+    title: t('news.newsData.news-002.title'),
+    summary: t('news.newsData.news-002.summary'),
     date: '2024-02-20',
-    category: '应用案例',
-    tags: ['南极科考', '极寒环境', '擎天H100'],
-    image: '/images/news/news-2.jpg'
+    category: t('news.newsData.news-002.category'),
+    tags: t('news.newsData.news-002.tags', undefined, { returnObjects: true }),
+    image: '/images/news/news-2.svg'
   },
   {
     id: 'news-003',
-    title: '协氢科技与清华大学达成战略合作，共建氢能研究中心',
-    summary: '协氢科技与清华大学签署战略合作协议，共建"氢能应用技术研究中心"，推动氢能技术产学研结合。',
+    title: t('news.newsData.news-003.title'),
+    summary: t('news.newsData.news-003.summary'),
     date: '2024-01-10',
-    category: '合作动态',
-    tags: ['产学研合作', '清华大学', '研究中心'],
-    image: '/images/news/news-3.jpg'
+    category: t('news.newsData.news-003.category'),
+    tags: t('news.newsData.news-003.tags', undefined, { returnObjects: true }),
+    image: '/images/news/news-3.svg'
   },
   {
     id: 'news-004',
-    title: '公司荣获"国家高新技术企业"认定',
-    summary: '协氢科技凭借在氢能领域的技术创新，成功获得"国家高新技术企业"认定，标志着公司研发能力获得国家认可。',
+    title: t('news.newsData.news-004.title'),
+    summary: t('news.newsData.news-004.summary'),
     date: '2023-12-18',
-    category: '企业荣誉',
-    tags: ['高新技术企业', '技术认证', '企业发展'],
-    image: '/images/news/news-4.jpg'
+    category: t('news.newsData.news-004.category'),
+    tags: t('news.newsData.news-004.tags', undefined, { returnObjects: true }),
+    image: '/images/news/news-4.svg'
   }
-];
+]);
 
-// 新闻分类
-const categories = [
-  { name: '全部', count: newsData.length },
-  { name: '技术突破', count: newsData.filter(item => item.category === '技术突破').length },
-  { name: '应用案例', count: newsData.filter(item => item.category === '应用案例').length },
-  { name: '合作动态', count: newsData.filter(item => item.category === '合作动态').length },
-  { name: '企业荣誉', count: newsData.filter(item => item.category === '企业荣誉').length }
-];
+// 使用computed属性获取翻译后的分类
+const categories = computed(() => [
+  { name: t('news.categories.all'), count: newsData.value.length },
+  { 
+    name: t('news.categories.tech'), 
+    count: newsData.value.filter(item => item.category === t('news.newsData.news-001.category')).length 
+  },
+  { 
+    name: t('news.categories.application'), 
+    count: newsData.value.filter(item => item.category === t('news.newsData.news-002.category')).length 
+  },
+  { 
+    name: t('news.categories.cooperation'), 
+    count: newsData.value.filter(item => item.category === t('news.newsData.news-003.category')).length 
+  },
+  { 
+    name: t('news.categories.honor'), 
+    count: newsData.value.filter(item => item.category === t('news.newsData.news-004.category')).length 
+  }
+]);
 
 // 标签聚合
-const allTags = newsData.reduce((acc, curr) => {
-  curr.tags.forEach(tag => {
-    if (!acc.includes(tag)) acc.push(tag);
+const allTags = computed(() => {
+  const tags: string[] = [];
+  newsData.value.forEach(news => {
+    news.tags.forEach(tag => {
+      if (!tags.includes(tag)) tags.push(tag);
+    });
   });
-  return acc;
-}, [] as string[]);
+  return tags;
+});
 
 // 搜索功能
 const onSearch = () => {

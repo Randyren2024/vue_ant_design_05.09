@@ -64,6 +64,7 @@ const toggleCollapsed = () => {
           theme="light"
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
+          :overflowedIndicator="null"
         >
           <a-menu-item key="home" @click="router.push('/')">{{ t('nav.home') }}</a-menu-item>
           <a-menu-item key="products" @click="router.push('/products')">{{ t('nav.products') }}</a-menu-item>
@@ -186,6 +187,7 @@ const toggleCollapsed = () => {
   flex: 1;
   display: flex;
   justify-content: center;
+  min-width: 600px;
 }
 
 .lang-dropdown {
@@ -261,6 +263,17 @@ const toggleCollapsed = () => {
   color: #1890ff;
 }
 
+@media (max-width: 992px) {
+  .desktop-menu {
+    min-width: auto;
+  }
+  
+  :deep(.ant-menu-item) {
+    padding: 0 10px;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 0 20px;
@@ -308,5 +321,10 @@ const toggleCollapsed = () => {
   padding: 0;
   margin: 0;
   background-color: #fff;
+}
+
+:deep(.ant-menu-item) {
+  padding: 0 16px;
+  font-size: 15px;
 }
 </style>

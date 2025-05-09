@@ -25,10 +25,10 @@ const factoryImages = computed(() => [
 
 // 合作伙伴 - 使用computed动态获取翻译
 const partners = computed(() => [
-  { name: t('about.partners_data.cas'), logo: '/images/partners/cas.png' },
-  { name: t('about.partners_data.tsinghua'), logo: '/images/partners/tsinghua.png' },
-  { name: t('about.partners_data.sinopec'), logo: '/images/partners/sinopec.png' },
-  { name: t('about.partners_data.sgcc'), logo: '/images/partners/sgcc.png' }
+  { name: t('about.partners_data.cas'), logo: '/images/partners/cas.svg' },
+  { name: t('about.partners_data.tsinghua'), logo: '/images/partners/tsinghua.svg' },
+  { name: t('about.partners_data.sinopec'), logo: '/images/partners/sinopec.svg' },
+  { name: t('about.partners_data.sgcc'), logo: '/images/partners/sgcc.svg' }
 ]);
 </script>
 
@@ -91,10 +91,17 @@ const partners = computed(() => [
         
         <a-tab-pane key="partners" :tab="t('about.partners')">
           <a-typography-title level="3" class="partners-title">{{ t('about.strategic_partners') }}</a-typography-title>
-          <a-row :gutter="[24, 24]" class="partners-list">
+          <div class="partners-description">
+            <a-typography-paragraph>
+              {{ t('about.partners_description') }}
+            </a-typography-paragraph>
+          </div>
+          <a-row :gutter="[32, 32]" class="partners-list">
             <a-col :xs="12" :sm="6" v-for="(partner, index) in partners" :key="index">
               <div class="partner-item">
-                <img :src="partner.logo" :alt="partner.name" class="partner-logo" />
+                <div class="partner-logo-container">
+                  <img :src="partner.logo" :alt="partner.name" class="partner-logo" />
+                </div>
                 <div class="partner-name">{{ partner.name }}</div>
               </div>
             </a-col>
@@ -144,35 +151,61 @@ const partners = computed(() => [
 }
 
 .partners-title {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.partners-description {
+  max-width: 800px;
+  margin: 0 auto 40px;
   text-align: center;
 }
 
 .partners-list {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .partner-item {
   text-align: center;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #eee;
   border-radius: 8px;
   transition: all 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .partner-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #1890ff;
+}
+
+.partner-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .partner-logo {
   max-width: 100%;
-  height: 60px;
-  margin-bottom: 10px;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .partner-name {
-  font-size: 14px;
-  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {

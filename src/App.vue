@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Layout, Menu, Button, Dropdown } from 'ant-design-vue';
+import { Layout, Menu, Button, Dropdown, notification } from 'ant-design-vue';
 import { useRouter, useRoute } from 'vue-router';
 import SeoManager from './components/SeoManager.vue';
+import localeService from './services/localeService';
 
 const { t, locale } = useI18n();
 const router = useRouter();
 const route = useRoute();
 const selectedKeys = ref<string[]>(['home']);
+
+// IP语言检测状态
+const isDetectingLanguage = ref(false);
+// 是否首次访问
+const isFirstVisit = ref(localeService.getUserPreferredLocale() === null);
 
 // 根据当前路由设置选中的菜单项
 watchEffect(() => {
@@ -37,8 +43,44 @@ const languages = [
   { key: 'de-DE', label: 'Deutsch' }
 ];
 
+// 根据用户的IP检测语言
+const detectLanguageByIP = async () => {
+  if (isDetectingLanguage.value) return;
+  
+  isDetectingLanguage.value = true;
+  try {
+    // 使用localeService检测合适的语言
+    const detectedLocale = await localeService.detectLocaleFromIP();
+    locale.value = detectedLocale;
+    
+    // 对于首次访问的用户，显示语言设置通知
+    if (isFirstVisit.value) {
+      const languageLabel = languages.find(lang => lang.key === detectedLocale)?.label || 'English';
+      
+      notification.info({
+        message: detectedLocale === 'zh-CN' ? '语言设置通知' : 'Language Setting',
+        description: detectedLocale === 'zh-CN' 
+          ? `根据您的位置，我们已将网站语言设置为${languageLabel}。您可以随时通过右上角的语言选择器更改语言。` 
+          : `Based on your location, we've set the website language to ${languageLabel}. You can change the language anytime using the language selector in the top right corner.`,
+        duration: 8,
+      });
+      
+      // 标记为非首次访问
+      isFirstVisit.value = false;
+    }
+  } catch (error) {
+    console.error('Failed to detect language by IP:', error);
+    // 默认使用英语
+    locale.value = 'en-US';
+  } finally {
+    isDetectingLanguage.value = false;
+  }
+};
+
 const changeLanguage = (lang: string) => {
   locale.value = lang;
+  // 将用户选择的语言保存到localStorage
+  localeService.saveUserPreferredLocale(lang);
 };
 
 // 移动端菜单
@@ -46,6 +88,11 @@ const collapsed = ref(false);
 const toggleCollapsed = () => {
   collapsed.value = !collapsed.value;
 };
+
+// 在组件挂载时检测语言
+onMounted(() => {
+  detectLanguageByIP();
+});
 </script>
 
 <template>

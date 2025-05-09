@@ -225,7 +225,7 @@ export default {
         `
       }
     },
-    categories: {
+    categoryList: {
       all: 'All',
       tech: 'Technology Breakthrough',
       application: 'Application Case',

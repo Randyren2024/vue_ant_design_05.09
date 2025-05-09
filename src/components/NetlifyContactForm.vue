@@ -1,55 +1,70 @@
 <template>
   <div class="netlify-form-container">
-    <form name="contact" method="POST" netlify data-netlify="true" @submit.prevent="handleSubmit">
+    <a-form layout="vertical" name="contact" netlify data-netlify="true" @finish="handleSubmit">
       <input type="hidden" name="form-name" value="contact" />
       
-      <div class="form-row">
-        <div class="form-col">
-          <label for="name">{{ t('contact.name') }}</label>
-          <input type="text" id="name" name="name" v-model="formData.name" required />
-        </div>
+      <a-row :gutter="24">
+        <a-col :xs="24" :md="12">
+          <a-form-item name="name" :label="t('contact.name')" :rules="[{ required: true, message: '请输入姓名' }]">
+            <a-input v-model:value="formData.name" name="name" />
+          </a-form-item>
+        </a-col>
         
-        <div class="form-col">
-          <label for="email">{{ t('contact.email') }}</label>
-          <input type="email" id="email" name="email" v-model="formData.email" required />
-        </div>
-      </div>
+        <a-col :xs="24" :md="12">
+          <a-form-item name="email" :label="t('contact.email')" :rules="[{ required: true, type: 'email', message: '请输入有效的邮箱地址' }]">
+            <a-input v-model:value="formData.email" name="email" />
+          </a-form-item>
+        </a-col>
+      </a-row>
       
-      <div class="form-row">
-        <div class="form-col">
-          <label for="phone">{{ t('contact.phone') }}</label>
-          <input type="tel" id="phone" name="phone" v-model="formData.phone" required />
-        </div>
+      <a-row :gutter="24">
+        <a-col :xs="24" :md="12">
+          <a-form-item name="phone" :label="t('contact.phone')" :rules="[{ required: true, message: '请输入电话' }]">
+            <a-input v-model:value="formData.phone" name="phone" />
+          </a-form-item>
+        </a-col>
         
-        <div class="form-col">
-          <label for="company">{{ t('contact.company') }}</label>
-          <input type="text" id="company" name="company" v-model="formData.company" />
-        </div>
-      </div>
+        <a-col :xs="24" :md="12">
+          <a-form-item name="company" :label="t('contact.company')">
+            <a-input v-model:value="formData.company" name="company" />
+          </a-form-item>
+        </a-col>
+      </a-row>
       
-      <div class="form-row">
-        <div class="form-col full-width">
-          <label for="message">{{ t('contact.message') }}</label>
-          <textarea id="message" name="message" rows="4" v-model="formData.message" required></textarea>
-        </div>
-      </div>
+      <a-form-item name="message" :label="t('contact.message')" :rules="[{ required: true, message: '请输入留言内容' }]">
+        <a-textarea v-model:value="formData.message" :rows="4" name="message" />
+      </a-form-item>
       
-      <div class="form-row">
-        <button type="submit" :disabled="submitting">
+      <a-form-item>
+        <a-button type="primary" html-type="submit" :loading="submitting" size="large">
           {{ submitting ? '提交中...' : t('contact.submit') }}
-        </button>
-      </div>
-    </form>
+        </a-button>
+      </a-form-item>
+    </a-form>
     
-    <div v-if="formSuccess" class="success-message">
-      <p>{{ t('contact.successMessage') || '感谢您的留言，我们将尽快与您联系。' }}</p>
-    </div>
+    <a-alert
+      v-if="formSuccess"
+      type="success"
+      :message="t('contact.successMessage') || '感谢您的留言，我们将尽快与您联系。'"
+      show-icon
+      banner
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { Form, Input, Button, Row, Col, Alert } from 'ant-design-vue';
+
+const AForm = Form;
+const AFormItem = Form.Item;
+const AInput = Input;
+const ATextarea = Input.TextArea;
+const AButton = Button;
+const ARow = Row;
+const ACol = Col;
+const AAlert = Alert;
 
 const { t } = useI18n();
 const submitting = ref(false);
@@ -63,14 +78,16 @@ const formData = reactive({
   message: ''
 });
 
-const handleSubmit = async () => {
+const handleSubmit = async (values) => {
   submitting.value = true;
   
   try {
     // 构建表单数据
     const formBody = new FormData();
     formBody.append('form-name', 'contact');
-    Object.entries(formData).forEach(([key, value]) => {
+    
+    // 使用表单验证后的值
+    Object.entries(values).forEach(([key, value]) => {
       formBody.append(key, value);
     });
     
@@ -87,7 +104,7 @@ const handleSubmit = async () => {
       });
       formSuccess.value = true;
       
-      // 3秒后隐藏成功消息
+      // 5秒后隐藏成功消息
       setTimeout(() => {
         formSuccess.value = false;
       }, 5000);
@@ -106,86 +123,14 @@ const handleSubmit = async () => {
 <style scoped>
 .netlify-form-container {
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin-bottom: 20px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
+:deep(.ant-form-item) {
+  margin-bottom: 16px;
 }
 
-.form-row {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-}
-
-.form-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.full-width {
-  width: 100%;
-}
-
-label {
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-input, textarea {
-  padding: 10px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 100%;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-  border-color: #1890ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-}
-
-button[type="submit"] {
-  background-color: #1890ff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  width: fit-content;
-}
-
-button[type="submit"]:hover:not(:disabled) {
-  background-color: #40a9ff;
-}
-
-button[type="submit"]:disabled {
-  background-color: #d9d9d9;
-  cursor: not-allowed;
-}
-
-.success-message {
+:deep(.ant-alert) {
   margin-top: 20px;
-  padding: 15px;
-  background-color: #f6ffed;
-  border: 1px solid #b7eb8f;
-  border-radius: 4px;
-  color: #52c41a;
-}
-
-@media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-    gap: 20px;
-  }
 }
 </style> 

@@ -1,51 +1,86 @@
 <template>
   <div class="netlify-form-container">
-    <a-form layout="vertical" name="contact" netlify data-netlify="true" @finish="handleSubmit">
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      @submit.prevent="handleSubmit"
+    >
       <input type="hidden" name="form-name" value="contact" />
+      <div hidden>
+        <input name="bot-field" />
+      </div>
       
       <a-row :gutter="24">
         <a-col :xs="24" :md="12">
-          <a-form-item name="name" :label="t('contact.name')" :rules="[{ required: true, message: '请输入姓名' }]">
-            <a-input v-model:value="formData.name" name="name" />
+          <a-form-item :label="t('contact.name')">
+            <a-input
+              v-model:value="formData.name"
+              name="name"
+              required
+            />
           </a-form-item>
         </a-col>
         
         <a-col :xs="24" :md="12">
-          <a-form-item name="email" :label="t('contact.email')" :rules="[{ required: true, type: 'email', message: '请输入有效的邮箱地址' }]">
-            <a-input v-model:value="formData.email" name="email" />
+          <a-form-item :label="t('contact.email')">
+            <a-input
+              v-model:value="formData.email"
+              name="email"
+              type="email"
+              required
+            />
           </a-form-item>
         </a-col>
       </a-row>
       
       <a-row :gutter="24">
         <a-col :xs="24" :md="12">
-          <a-form-item name="phone" :label="t('contact.phone')" :rules="[{ required: true, message: '请输入电话' }]">
-            <a-input v-model:value="formData.phone" name="phone" />
+          <a-form-item :label="t('contact.phone')">
+            <a-input
+              v-model:value="formData.phone"
+              name="phone"
+              required
+            />
           </a-form-item>
         </a-col>
         
         <a-col :xs="24" :md="12">
-          <a-form-item name="company" :label="t('contact.company')">
-            <a-input v-model:value="formData.company" name="company" />
+          <a-form-item :label="t('contact.company')">
+            <a-input
+              v-model:value="formData.company"
+              name="company"
+            />
           </a-form-item>
         </a-col>
       </a-row>
       
-      <a-form-item name="message" :label="t('contact.message')" :rules="[{ required: true, message: '请输入留言内容' }]">
-        <a-textarea v-model:value="formData.message" :rows="4" name="message" />
+      <a-form-item :label="t('contact.message')">
+        <a-textarea
+          v-model:value="formData.message"
+          name="message"
+          :rows="4"
+          required
+        />
       </a-form-item>
       
       <a-form-item>
-        <a-button type="primary" html-type="submit" :loading="submitting" size="large">
+        <a-button
+          type="primary"
+          html-type="submit"
+          :loading="submitting"
+          size="large"
+        >
           {{ submitting ? '提交中...' : t('contact.submit') }}
         </a-button>
       </a-form-item>
-    </a-form>
+    </form>
     
     <a-alert
       v-if="formSuccess"
       type="success"
-      :message="t('contact.successMessage') || '感谢您的留言，我们将尽快与您联系。'"
+      :message="t('contact.successMessage')"
       show-icon
       banner
     />
@@ -55,16 +90,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { Form, Input, Button, Row, Col, Alert } from 'ant-design-vue';
-
-const AForm = Form;
-const AFormItem = Form.Item;
-const AInput = Input;
-const ATextarea = Input.TextArea;
-const AButton = Button;
-const ARow = Row;
-const ACol = Col;
-const AAlert = Alert;
+import { notification } from 'ant-design-vue';
 
 const { t } = useI18n();
 const submitting = ref(false);
@@ -78,42 +104,54 @@ const formData = reactive({
   message: ''
 });
 
-const handleSubmit = async (values) => {
+const encode = (data: Record<string, string>) => {
+  const formData = new FormData();
+  Object.keys(data).forEach(key => {
+    formData.append(key, data[key]);
+  });
+  return formData;
+};
+
+const handleSubmit = async (e: Event) => {
+  const form = e.target as HTMLFormElement;
   submitting.value = true;
   
   try {
-    // 构建表单数据
-    const formBody = new FormData();
-    formBody.append('form-name', 'contact');
-    
-    // 使用表单验证后的值
-    Object.entries(values).forEach(([key, value]) => {
-      formBody.append(key, value);
+    const formDataObj = {
+      'form-name': 'contact',
+      ...formData
+    };
+
+    const response = await fetch("/", {
+      method: "POST",
+      body: encode(formDataObj)
     });
-    
-    // 提交到Netlify
-    const response = await fetch('/', {
-      method: 'POST',
-      body: formBody
-    });
-    
-    if (response.ok) {
-      // 重置表单
-      Object.keys(formData).forEach(key => {
-        formData[key] = '';
-      });
-      formSuccess.value = true;
-      
-      // 5秒后隐藏成功消息
-      setTimeout(() => {
-        formSuccess.value = false;
-      }, 5000);
-    } else {
-      throw new Error('表单提交失败');
+
+    if (!response.ok) {
+      throw new Error(`Form submission failed: ${response.status} ${response.statusText}`);
     }
+
+    // Reset form
+    form.reset();
+    Object.keys(formData).forEach(key => {
+      formData[key as keyof typeof formData] = '';
+    });
+    
+    formSuccess.value = true;
+    notification.success({
+      message: t('contact.successMessage'),
+      duration: 5
+    });
+    
+    setTimeout(() => {
+      formSuccess.value = false;
+    }, 5000);
   } catch (error) {
-    console.error('表单提交出错:', error);
-    alert('表单提交失败，请稍后再试');
+    console.error('Form submission error:', error);
+    notification.error({
+      message: t('contact.errorTitle') || 'Form Submission Error',
+      description: t('contact.errorMessage') || 'Failed to submit the form. Please try again later.'
+    });
   } finally {
     submitting.value = false;
   }
@@ -133,4 +171,4 @@ const handleSubmit = async (values) => {
 :deep(.ant-alert) {
   margin-top: 20px;
 }
-</style> 
+</style>

@@ -42,9 +42,12 @@ const countryToLanguage: Record<string, string> = {
 const LOCALE_STORAGE_KEY = 'user-preferred-locale';
 const IP_COUNTRY_STORAGE_KEY = 'user-ip-country';
 const IP_DETECTION_TIMESTAMP = 'ip-detection-timestamp';
+const IP_DETECTION_FAILURE_COUNT = 'ip-detection-failure-count';
 
 // IP检测的有效期（24小时，单位为毫秒）
 const IP_DETECTION_TTL = 24 * 60 * 60 * 1000;
+// 最大重试次数
+const MAX_FAILURE_COUNT = 3;
 
 /**
  * 根据浏览器语言获取默认语言
@@ -122,8 +125,24 @@ const cacheCountryCode = (countryCode: string) => {
   try {
     localStorage.setItem(IP_COUNTRY_STORAGE_KEY, countryCode);
     localStorage.setItem(IP_DETECTION_TIMESTAMP, Date.now().toString());
+    // 重置失败计数
+    localStorage.setItem(IP_DETECTION_FAILURE_COUNT, '0');
   } catch (error) {
     console.error('Failed to cache country code:', error);
+  }
+};
+
+/**
+ * 获取并增加失败计数
+ */
+const incrementFailureCount = (): number => {
+  try {
+    const count = parseInt(localStorage.getItem(IP_DETECTION_FAILURE_COUNT) || '0', 10);
+    const newCount = count + 1;
+    localStorage.setItem(IP_DETECTION_FAILURE_COUNT, newCount.toString());
+    return newCount;
+  } catch (error) {
+    return 0;
   }
 };
 
@@ -131,10 +150,20 @@ const cacheCountryCode = (countryCode: string) => {
  * 检测用户IP并返回合适的语言
  */
 export const detectLocaleFromIP = async (): Promise<string> => {
-  // 获取用户首选语言，如果已经设置
+  // 获取用户首选语言，如果已经设置则直接返回
   const userPreferredLocale = getUserPreferredLocale();
   if (userPreferredLocale) {
     return userPreferredLocale;
+  }
+  
+  // 检查失败次数，如果超过最大重试次数，直接返回浏览器语言
+  try {
+    const failureCount = parseInt(localStorage.getItem(IP_DETECTION_FAILURE_COUNT) || '0', 10);
+    if (failureCount >= MAX_FAILURE_COUNT) {
+      return getDefaultLocaleFromBrowser();
+    }
+  } catch (error) {
+    // 如果无法读取失败次数，继续尝试检测
   }
   
   // 检查缓存的国家代码是否有效
@@ -149,12 +178,13 @@ export const detectLocaleFromIP = async (): Promise<string> => {
   const defaultLocale = getDefaultLocaleFromBrowser();
   
   try {
-    // 使用ipinfo.io API检测用户IP和国家
-    const response = await axios.get('https://ipinfo.io/json?token=1eb61c9abcdd60');
-    const data = response.data;
+    // 设置超时时间为5秒
+    const response = await axios.get('https://ipinfo.io/json?token=1eb61c9abcdd60', {
+      timeout: 5000
+    });
     
-    if (data && data.country) {
-      const countryCode = data.country;
+    if (response.data && response.data.country) {
+      const countryCode = response.data.country;
       // 缓存国家代码
       cacheCountryCode(countryCode);
       
@@ -164,11 +194,14 @@ export const detectLocaleFromIP = async (): Promise<string> => {
       }
     }
     
-    // 如果没有匹配的国家或无法获取IP信息，使用浏览器语言作为默认值
+    // 如果没有匹配的国家，使用浏览器语言
     return defaultLocale;
   } catch (error) {
-    console.error('Failed to detect language from IP:', error);
-    // 出错时使用浏览器语言或英语作为默认值
+    // 增加失败计数
+    const failureCount = incrementFailureCount();
+    console.warn(`IP detection failed (attempt ${failureCount}/${MAX_FAILURE_COUNT}):`, error);
+    
+    // 返回浏览器语言作为默认值
     return defaultLocale;
   }
 };
@@ -178,4 +211,4 @@ export default {
   saveUserPreferredLocale,
   getUserPreferredLocale,
   getDefaultLocaleFromBrowser
-}; 
+};

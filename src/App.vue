@@ -69,9 +69,9 @@ const detectLanguageByIP = async () => {
       isFirstVisit.value = false;
     }
   } catch (error) {
-    console.error('Failed to detect language by IP:', error);
-    // 默认使用英语
-    locale.value = 'en-US';
+    console.warn('Language detection failed, using browser default');
+    // 使用浏览器默认语言
+    locale.value = localeService.getDefaultLocaleFromBrowser();
   } finally {
     isDetectingLanguage.value = false;
   }

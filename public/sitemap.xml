@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- 主页 -->
   <url>
     <loc>https://hydrogendrone.cn/</loc>
@@ -14,6 +15,10 @@
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://hydrogendrone.cn/"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/products/qingtian-h100-1_optimized.jpg</image:loc>
+      <image:title>擎天H100氢燃料电池无人机</image:title>
+    </image:image>
   </url>
   
   <!-- 产品页面 -->
@@ -42,6 +47,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/products/qingtian-h100"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/products/qingtian-h100"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/products/qingtian-h100"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/products/qingtian-h100-1_optimized.jpg</image:loc>
+      <image:title>擎天H100氢燃料电池无人机</image:title>
+    </image:image>
   </url>
   
   <url>
@@ -55,6 +64,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/products/qingluan-h25"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/products/qingluan-h25"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/products/qingluan-h25"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/products/qingluanH25-1_optimized.jpg</image:loc>
+      <image:title>青鸾H25氢燃料电池无人机</image:title>
+    </image:image>
   </url>
   
   <url>
@@ -68,6 +81,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/products/hits-series"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/products/hits-series"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/products/hits-series"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/products/hits-series_optimized.jpg</image:loc>
+      <image:title>麒麟HiTS系列氢燃料电池系统</image:title>
+    </image:image>
   </url>
   
   <!-- 应用场景页面 -->
@@ -96,6 +113,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/scenarios/inspection"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/scenarios/inspection"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/scenarios/inspection"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/scenarios/inspection_optimized.jpg</image:loc>
+      <image:title>氢燃料电池无人机巡检应用</image:title>
+    </image:image>
   </url>
   
   <url>
@@ -109,6 +130,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/scenarios/emergency"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/scenarios/emergency"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/scenarios/emergency"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/scenarios/emergency_optimized.jpg</image:loc>
+      <image:title>氢燃料电池无人机应急救援</image:title>
+    </image:image>
   </url>
   
   <url>
@@ -122,6 +147,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/scenarios/logistics"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/scenarios/logistics"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/scenarios/logistics"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/scenarios/logistics_optimized.jpg</image:loc>
+      <image:title>氢燃料电池无人机物流运输</image:title>
+    </image:image>
   </url>
   
   <url>
@@ -135,6 +164,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/scenarios/cleaning"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/scenarios/cleaning"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/scenarios/cleaning"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/scenarios/cleaning_optimized.jpg</image:loc>
+      <image:title>氢燃料电池无人机清洁服务</image:title>
+    </image:image>
   </url>
   
   <!-- 关于我们页面 -->
@@ -149,6 +182,10 @@
     <xhtml:link rel="alternate" hreflang="ja-JP" href="https://hydrogendrone.cn/ja/about"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/about"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/about"/>
+    <image:image>
+      <image:loc>https://hydrogendrone.cn/images/factory/factory-1_optimized.jpg</image:loc>
+      <image:title>氢燃料电池无人机生产基地</image:title>
+    </image:image>
   </url>
   
   <!-- 联系我们页面 -->
@@ -178,4 +215,4 @@
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://hydrogendrone.cn/es/news"/>
     <xhtml:link rel="alternate" hreflang="de-DE" href="https://hydrogendrone.cn/de/news"/>
   </url>
-</urlset> 
+</urlset>

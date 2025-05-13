@@ -12,8 +12,6 @@
     "deploy:hk": "s deploy -y"
   },
   "dependencies": {
-    "@strapi/strapi": "^4.20.0",
-    "@strapi/sdk-js": "^1.0.0",
     "ant-design-vue": "^4.2.6",
     "axios": "^1.9.0",
     "build": "^0.1.4",
